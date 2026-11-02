@@ -1,0 +1,68 @@
+# DHT11 and MQ3 Sensor Data to ThingSpeak
+
+import Adafruit_DHT as dht
+import RPi.GPIO as GPIO
+from time import sleep
+from urllib.request import urlopen
+
+# GPIO Configuration
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+# MQ3 Digital Output
+GPIO.setup(24, GPIO.IN)
+
+# DHT11 Sensor Function
+def DHT11_data():
+    humidity, temperature = dht.read_retry(11, 23)
+    return humidity, temperature
+
+# ThingSpeak API Key
+myAPI = "YOUR_WRITE_API_KEY"
+
+# ThingSpeak URL
+baseURL = "https://api.thingspeak.com/update?api_key=" + myAPI
+
+try:
+    while True:
+
+        # Read DHT11 sensor
+        humidity, temperature = DHT11_data()
+
+        if humidity is not None and temperature is not None:
+
+            print("Temperature: {0:0.1f} C".format(temperature))
+            print("Humidity: {0:0.1f} %".format(humidity))
+
+            # Read MQ3 sensor
+            input_state = GPIO.input(24)
+
+            # Active LOW output
+            if input_state == GPIO.LOW:
+                smoke = 1
+                print("Smoke Detected")
+            else:
+                smoke = 0
+                print("Smoke Not Detected")
+
+            print("MQ3 Value:", smoke)
+
+            # Upload data to ThingSpeak
+            url = baseURL + "&field1={}&field2={}&field3={}".format(
+                temperature, humidity, smoke
+            )
+
+            response = urlopen(url)
+            print("ThingSpeak Response:", response.read().decode())
+            response.close()
+
+        else:
+            print("DHT11 Sensor Error")
+
+        sleep(20)
+
+except KeyboardInterrupt:
+    print("Program Stopped")
+
+finally:
+    GPIO.cleanup()

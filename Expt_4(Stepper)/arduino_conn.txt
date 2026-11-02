@@ -1,0 +1,16 @@
+L298N DRIVER          ARDUINO UNO
+--------------------------------
+ENA                   ---> D9
+IN3                   ---> D10
+IN4                   ---> D11
+GND                   ---> GND
+
+DC MOTOR
+--------------------------------
+OUT3                  ---> Motor terminal 1
+OUT4                  ---> Motor terminal 2
+
+POWER SUPPLY
+--------------------------------
+12V / Vs               ---> External motor supply +
+GND                    ---> External motor supply -

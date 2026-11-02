@@ -1,0 +1,45 @@
+// 3. DC Motor Speed Control using L298N
+
+int enable2 = 9;
+int in3 = 10;
+int in4 = 11;
+
+void setup() {
+  pinMode(enable2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+}
+
+void loop() {
+
+  // Clockwise rotation
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+
+  // Increase motor speed
+  for (int i = 0; i <= 255; i++) {
+    analogWrite(enable2, i);
+    delay(20);
+  }
+
+  // Decrease motor speed
+  for (int i = 255; i >= 0; i--) {
+    analogWrite(enable2, i);
+    delay(20);
+  }
+
+  // Stop motor
+  analogWrite(enable2, 0);
+  delay(1000);
+
+  // Anticlockwise rotation
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+
+  analogWrite(enable2, 180);
+  delay(3000);
+
+  // Stop motor
+  analogWrite(enable2, 0);
+  delay(1000);
+}

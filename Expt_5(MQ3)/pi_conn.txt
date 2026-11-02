@@ -1,0 +1,16 @@
+# DHT11 SENSOR       RASPBERRY PI
+# --------------------------------
+# VCC           ---> 3.3V (Pin 1)
+# DATA          ---> GPIO23 (Pin 16)
+# GND           ---> GND (Pin 6)
+#
+# MQ3 SENSOR         RASPBERRY PI
+# --------------------------------
+# VCC           ---> 5V (Pin 2)
+# GND           ---> GND (Pin 6)
+# DO            ---> GPIO24 (Pin 18)
+#
+# IMPORTANT:
+# Ensure MQ3 DO output is 3.3V compatible.
+# Use a voltage divider or level shifter
+# if its output is 5V.

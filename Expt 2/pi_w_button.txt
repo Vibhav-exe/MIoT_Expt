@@ -1,0 +1,17 @@
+from gpiozero import LED, Button
+from time import sleep
+
+# Configure GPIO pins
+led = LED(17)
+button = Button(2, pull_up=False)
+
+print("Press the button to turn ON the LED")
+
+while True:
+    if button.is_pressed:
+        led.on()
+        print("Button Pressed - LED ON")
+    else:
+        led.off()
+
+    sleep(0.1)

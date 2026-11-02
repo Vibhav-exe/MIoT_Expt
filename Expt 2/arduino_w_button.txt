@@ -1,0 +1,24 @@
+#define ledPin 13       // Pin connected to LED
+#define switchPin 8     // Pin connected to push button
+
+int val = 0;            // Variable to store button state
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);       // LED as output
+  pinMode(switchPin, INPUT);     // Button as input
+}
+
+void loop()
+{
+  val = digitalRead(switchPin);  // Read button state
+
+  if (val == HIGH)
+  {
+    digitalWrite(ledPin, LOW);   // LED OFF
+  }
+  else
+  {
+    digitalWrite(ledPin, HIGH);  // LED ON
+  }
+}

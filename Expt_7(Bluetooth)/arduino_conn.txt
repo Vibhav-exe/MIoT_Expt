@@ -1,0 +1,16 @@
+HC-06 MODULE       ARDUINO NANO
+--------------------------------
+VCC          --->  5V
+GND          --->  GND
+TXD          --->  D2 (RX)
+RXD          --->  D3 (TX)
+                 (Through voltage divider)
+
+VOLTAGE DIVIDER:
+Arduino D3 ---> 1kΩ resistor
+                |
+                +----> HC-06 RXD
+                |
+              2kΩ resistor
+                |
+               GND

@@ -1,0 +1,17 @@
+# L298N DRIVER       RASPBERRY PI
+# --------------------------------
+# ENB                ---> GPIO18 (Pin 12)
+# IN3                ---> GPIO23 (Pin 16)
+# IN4                ---> GPIO24 (Pin 18)
+# GND                ---> GND (Pin 6)
+#
+# MOTOR:
+# OUT3               ---> Motor terminal 1
+# OUT4               ---> Motor terminal 2
+#
+# EXTERNAL POWER:
+# Motor supply +     ---> L298N 12V / VS
+# Motor supply -     ---> L298N GND
+#
+# Remove ENB jumper for PWM control.
+# Connect Raspberry Pi GND and L298N GND.

@@ -1,0 +1,95 @@
+# CONNECTIONS:
+# LM35 VCC  ---> 5V (Pin 2)
+# LM35 OUT  ---> MCP3008 CH0
+# LM35 GND  ---> GND
+#
+# MCP3008 CONNECTIONS:
+# VDD  ---> 3.3V (Pin 1)
+# VREF ---> 3.3V (Pin 1)
+# AGND ---> GND
+# DGND ---> GND
+# CLK  ---> GPIO11 (Pin 23)
+# DOUT ---> GPIO9  (Pin 21)
+# DIN  ---> GPIO10 (Pin 19)
+# CS   ---> GPIO8  (Pin 24)
+
+from gpiozero import MCP3008
+from time import sleep
+
+sensor = MCP3008(channel=0)
+
+while True:
+    voltage = sensor.value * 3.3
+    temperature = voltage * 100
+
+    print("Temperature:", round(temperature, 2), "C")
+
+    sleep(1)
+
+
+# ================================================== 
+
+#Interfacing of IR Sensor
+
+#==================================================
+
+
+# CONNECTIONS:
+# IR VCC  ---> 3.3V (Pin 1)
+# IR GND  ---> GND (Pin 6)
+# IR OUT  ---> GPIO17 (Pin 11)
+#
+# LED Anode   ---> GPIO27 (Pin 13)
+# LED Cathode ---> GND (Pin 14)
+# Use 220 ohm resistor with LED
+
+from gpiozero import LED, DigitalInputDevice
+from time import sleep
+
+led = LED(27)
+ir = DigitalInputDevice(17)
+
+while True:
+
+    if ir.value == 1:
+        print("Object Absent")
+        led.off()
+
+    else:
+        print("Object Present")
+        led.on()
+
+    sleep(0.1)
+
+#==================================================
+
+#3. Interfacing of Ultrasonic Sensor (HC-SR04)
+
+#==================================================
+
+# CONNECTIONS:
+# HC-SR04 VCC  ---> 5V (Pin 2)
+# HC-SR04 GND  ---> GND (Pin 6)
+# HC-SR04 TRIG ---> GPIO23 (Pin 16)
+# HC-SR04 ECHO ---> GPIO24 (Pin 18)
+#
+# IMPORTANT:
+# Use a voltage divider on ECHO
+# to reduce 5V to approximately 3.3V.
+
+from gpiozero import DistanceSensor
+from time import sleep
+
+sensor = DistanceSensor(
+    echo=24,
+    trigger=23,
+    max_distance=4
+)
+
+while True:
+
+    distance = sensor.distance * 100
+
+    print("Distance:", round(distance, 2), "cm")
+
+    sleep(1)

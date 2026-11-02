@@ -1,0 +1,28 @@
+LM235
+LM35          Arduino UNO
+-------------------------
+VCC     --->  5V
+OUT     --->  A0
+GND     --->  GND
+
+
+IR
+IR SENSOR     Arduino UNO
+-------------------------
+VCC     --->  5V
+GND     --->  GND
+OUT     --->  D2
+
+LED           Arduino UNO
+-------------------------
+Anode   --->  D13 (220 ohm resistor)
+Cathode --->  GND
+
+
+Ultrasonic
+HC-SR04       Arduino UNO
+-------------------------
+VCC     --->  5V
+TRIG    --->  D9
+ECHO    --->  D2
+GND     --->  GND
